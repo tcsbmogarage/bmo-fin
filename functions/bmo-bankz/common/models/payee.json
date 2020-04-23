@@ -1,0 +1,38 @@
+{
+  "name": "Payee",
+  "plural": "payees",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Id": {
+      "type": "string"
+    },
+    "User_Id": {
+      "type": "string"
+    },
+    "Payee_Short_Name": {
+      "type": "string"
+    },
+    "Payee_Account_Name": {
+      "type": "string"
+    },
+    "Payee_Account_Number": {
+      "type": "string"
+    },
+    "Payee_Account_Limit": {
+      "type": "number",
+      "default": 10000
+    },
+    "Is_A_Safe_Zone_Payee": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

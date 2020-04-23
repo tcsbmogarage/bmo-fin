@@ -1,0 +1,39 @@
+{
+  "name": "Transaction",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Id": {
+      "type": "string"
+    },
+    "User_Account_Number": {
+      "type": "string"
+    },
+    "Source_Account_Name": {
+      "type": "string"
+    },
+    "Source_Account_Number": {
+      "type": "string"
+    },
+    "Amount": {
+      "type": "string",
+      "default": "$0"
+    },
+    "Transaction_Status": {
+      "type": "string"
+    },
+    "Transaction_Time": {
+      "type": "date"
+    },
+    "Comment": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

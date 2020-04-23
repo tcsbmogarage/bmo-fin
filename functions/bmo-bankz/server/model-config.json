@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "Payee": {
+    "dataSource": "Dbfs",
+    "public": true
+  },
+  "AccountBalance": {
+    "dataSource": "Dbfs",
+    "public": true
+  },
+  "Notification": {
+    "dataSource": "Dbfs",
+    "public": true
+  },
+  "Product": {
+    "dataSource": "Dbfs",
+    "public": true
+  },
+  "Transaction": {
+    "dataSource": "Dbfs",
+    "public": true
+  },
+  "UserDetail": {
+    "dataSource": "Dbfs",
+    "public": true
+  }
+}

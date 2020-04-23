@@ -1,0 +1,15 @@
+{
+  "initial:before": {
+  "loopback#favicon": {
+    "params": "bmo-bankz/client/favicon.ico"
+  }
+},
+  "final:after": {
+    "strong-error-handler": {
+      "params": {
+        "debug": true,
+        "log": true
+      }
+    }
+  }
+}

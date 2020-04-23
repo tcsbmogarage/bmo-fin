@@ -1,0 +1,28 @@
+{
+  "name": "AccountBalance",
+  "plural": "AccountBalances",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Id": {
+      "type": "string"
+    },
+    "User_Account_Number": {
+      "type": "string"
+    },
+    "Amount": {
+      "type": "string",
+      "default": "$0"
+    },
+    "Last_Updated_Time": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

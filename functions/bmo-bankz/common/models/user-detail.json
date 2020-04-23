@@ -1,0 +1,72 @@
+{
+  "name": "UserDetail",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Id": {
+      "type": "string"
+    },
+    "Title": {
+      "type": "string"
+    },
+    "First_Name": {
+      "type": "string"
+    },
+    "Last_Name": {
+      "type": "string"
+    },
+    "Short_Name": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "string"
+    },
+    "Passcode": {
+      "type": "string"
+    },
+    "Gender": {
+      "type": "string"
+    },
+    "Occupation": {
+      "type": "string"
+    },
+    "Address": {
+      "type": "string"
+    },
+    "Zipcode": {
+      "type": "string"
+    },
+    "Mobile_Number": {
+      "type": "string"
+    },
+    "Account_Numbers": {
+      "type": [
+        "object"
+      ]
+    },
+    "BMO_Mortgage_Loan": {
+      "type": "boolean",
+      "default": false
+    },
+    "BMO_Credit_Cards": {
+      "type": [
+        "object"
+      ]
+    },
+    "Other_Bank_Credit_Cards": {
+      "type": "boolean",
+      "default": false
+    },
+    "Average_Flying_Expenses": {
+      "type": "string",
+      "default": "$0"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

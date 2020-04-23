@@ -1,0 +1,44 @@
+{
+  "name": "Notification",
+  "plural": "Notifications",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Id": {
+      "type": "string"
+    },
+    "User_Account_Number": {
+      "type": "string"
+    },
+    "Priority": {
+      "type": "number",
+      "default": 5
+    },
+    "Source": {
+      "type": "string"
+    },
+    "Expiry_Date": {
+      "type": "date"
+    },
+    "Status": {
+      "type": "boolean",
+      "default": true
+    },
+    "Message_Detail": {
+      "type": "string"
+    },
+    "Message_Summary": {
+      "type": "string"
+    },
+    "Posted_Time": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

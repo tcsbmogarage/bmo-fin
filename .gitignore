@@ -65,5 +65,5 @@ node_modules/
 .env
 
 #bmo-bankz
-bmo-bankz/server/server.js
-bmo-bankz/server/datasources.json
+./functions/bmo-bankz/server/server.js
+./functoins/bmo-bankz/server/datasources.json

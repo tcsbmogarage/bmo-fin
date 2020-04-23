@@ -63,3 +63,7 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+#bmo-bankz
+bmo-bankz/server/server.js
+bmo-bankz/server/datasources.json

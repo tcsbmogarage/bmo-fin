@@ -19,3 +19,4 @@ node_modules
 npm-debug.log
 ./server/datasources.json
 ./server/server.js
+./vui/src/config.js

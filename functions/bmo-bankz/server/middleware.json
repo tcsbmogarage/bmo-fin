@@ -1,7 +1,6 @@
 {
   "initial:before": {
     "loopback#favicon": {
-      "params": "/functions/bmo-bankz/client/favicon.ico"
     }
   },
   "initial": {

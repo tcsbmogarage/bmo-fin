@@ -1,0 +1,41 @@
+{
+  "name": "Bankz",
+  "version": "1.0.0",
+  "description": "BMO Bankz VUI",
+  "main": "src/index.js",
+  "dependencies": {
+    "cache-pug-templates": "^2.0.1",
+    "jovo-db-filedb": "^3.0.0",
+    "jovo-framework": "^3.0.13",
+    "jovo-platform-alexa": "^3.0.0",
+    "jovo-platform-googleassistant": "^3.0.0",
+    "jovo-plugin-debugger": "^3.0.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-install": "^1.1.0",
+    "gulp-run-command": "0.0.9",
+    "gulp-zip": "^4.2.0",
+    "jest": "^23.6.0",
+    "pug-ssml": "0.0.16"
+  },
+  "scripts": {
+    "tsc": "node -v",
+    "test": "jest",
+    "bundle": "gulp --gulpfile node_modules/jovo-framework/gulpfile.js --cwd ./",
+    "start": "cd src && node index.js --webhook",
+    "launch": "npm start -- --launch"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Jovo",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}

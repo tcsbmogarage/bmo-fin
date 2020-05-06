@@ -1,0 +1,20 @@
+
+if Is_New
+    s
+        +slow 
+            | Hello #{Title} #{First_Name}, 
+            break(time="20ms") 
+            | Welcome to 
+            prosody(volume="loud") 
+            prosody(pitch="high") #{Account_Numbers[0].Institution_Name} 
+            break(time="20ms") 
+            | would you like to take
+            prosody(volume="loud") a quick tour? 
+else
+    s
+        +high
+            +loud
+                | Hello #{Title} #{First_Name}, 
+        +weak-break
+            +slow
+                | How may I help you now?

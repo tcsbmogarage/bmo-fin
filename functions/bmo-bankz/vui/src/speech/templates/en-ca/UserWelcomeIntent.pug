@@ -3,10 +3,10 @@ if ! Is_Tour_Completed
     if ! Reprompt_Message
         s 
             | Hello #{Title} #{First_Name}, 
-            break(time="30ms") 
+            break(time="40ms") 
             | Welcome to 
             prosody(volume="loud") 
-                prosody(pitch="high") #{Account_Numbers[0].Institution_Name} 
+                prosody(rate="medium") #{Login.Institution_Name} 
             break(time="1s") 
             | I am your personal banker,
             | always here to help your day to day banking activities 
@@ -15,7 +15,10 @@ if ! Is_Tour_Completed
             emphasis(level="moderate") quick tour 
             | to explore this voice banking service.
             break(time="2s")
-            | Say 'Okay' to continue.
+            prosody(volume="loud") Say 
+            break(time="20ms")
+            emphasis(level="strong") 'Okay' 
+            | to continue.
     else 
         s
             prosody(volume="loud") Say 
@@ -24,9 +27,9 @@ if ! Is_Tour_Completed
             | to continue.
 else
     s
-        +high
+        +slow
             +loud
                 | Hello #{Title} #{First_Name}, 
         +weak-break
-            +slow
-                | How may I help you now?
+        +slow
+            | How may I help you now?

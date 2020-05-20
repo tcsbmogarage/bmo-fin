@@ -1,0 +1,77 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "bmo banker",
+            "modelConfiguration": {
+                "fallbackIntentSensitivity": {
+                    "level": "LOW"
+                }
+            },
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "WelcomeIntent",
+                    "slots": [],
+                    "samples": [
+                        "Hello"
+                    ]
+                },
+                {
+                    "name": "Notifications_SummaryIntent",
+                    "slots": [],
+                    "samples": [
+                        "What's my summary",
+                        "quick summary",
+                        "quick summary please",
+                        "please tell my summary",
+                        "summary please",
+                        "tell my notifications",
+                        "tell my summary",
+                        "what's the summary"
+                    ]
+                },
+                {
+                    "name": "TransactionsEnquiryAccountBalance",
+                    "slots": [],
+                    "samples": [
+                        "please tell my account balance",
+                        "account balance please",
+                        "tell my account balance",
+                        "balance please",
+                        "what is my balance",
+                        "how much money left in my account",
+                        "what is my account balance"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                }
+            ],
+            "types": []
+        }
+    }
+}

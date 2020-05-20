@@ -1,0 +1,30 @@
+if Locale == "fr-ca"
+    s
+        case Emotion.toLowerCase()
+            when 'sad'
+                emphasis(level="moderate") 
+                    prosody(volume="x-soft") C'est bon, 
+                break(time="10ms")
+                | #{Msg}
+            when 'joy'
+                emphasis(level="moderate") 
+                    prosody(volume="x-loud") Je suis heureux d'entendre cela, 
+                break(time="10ms")
+                | #{Msg}
+            default
+                | #{Msg}
+else 
+    s
+        case Emotion.toLowerCase()
+            when 'sad'
+                emphasis(level="moderate") 
+                    prosody(volume="x-soft") That's Okay, 
+                break(time="10ms")
+                | #{Msg}
+            when 'joy'
+                emphasis(level="moderate") 
+                    prosody(volume="x-loud") I am glad to hear that, 
+                break(time="10ms")
+                | #{Msg}
+            default
+                | #{Msg}

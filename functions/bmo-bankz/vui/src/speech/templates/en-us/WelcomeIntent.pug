@@ -1,7 +1,18 @@
-s
-    | Welcome to 
-    break(time="20ms") 
-        +high
+if ! Reprompt_Message
+    s
+        | Welcome to 
+        break(time="20ms") 
+        +loud
             +slow
-                +loud
-                    | #{Institution_Name}
+                | #{Institution_Name}, 
+        break(time="1s")
+        | Are you an 
+        break(time="20ms") 
+        emphasis(level="moderate") existing customer 
+        | with #{Institution_Name}?
+else
+    s
+        | Are you an 
+        break(time="20ms") 
+        emphasis(level="moderate") existing customer 
+        | with #{Institution_Name}?

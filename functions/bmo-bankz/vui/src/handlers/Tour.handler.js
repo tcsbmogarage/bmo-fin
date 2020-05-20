@@ -1,35 +1,45 @@
 'use strict'
 
 var TourHandler = {
-
+    
+    user: '',
+    getUserDetails: function() {
+        this.user = this.$user.$data;
+        return this.user;
+    },
     StartTourIntent() {
-        let session = this.getSessionAttributes();
-        console.log(app.Speech);
-        console.log(this.$user.$data);
-        let user = this.$user.$data;
-        let loginUser = user.Oauth;
-        let loginUserDetail = user.Detail;
+
         let msg = "";
 
-       if(loginUser.Is_Tour_Completed) {
-            this.tell('You tour already completed');
+        this.getUserDetails();
+
+        if(this.user.Detail.Is_Tour_Completed) {
+
+            this.tell('You are already completed the tour');
         } else {
-            msg = app.Speech[user.Locale].StartTourIntent(loginUserDetail);
+            
+            msg = app.Speech[this.user.Locale].StartTourIntent(this.user.Detail);
             this.$speech.addText(msg);
+            this.$reprompt = app.Speech['help']._HCHY();
             this.$user.$data.Detail.Is_Tour_Completed = true;
 
-            this.tell(msg);
+            this.followUpState("UserWelcomeIntentState").ask(this.$speech, this.$reprompt);
         }
     },
     TourIntentState: {
+
         YesIntent() {
             this.StartTourIntent();
         },
-        NoIntent() {
-            this.tell("Ok, All your's");
+        NoIntent() { 
+            this.$user.$data.Detail.Is_Tour_Completed = true;
+            this.$reprompt = this.$speech = app.Speech['help']._HCHY({ Emotion: 'Sad'});
+            this.followUpState("UserWelcomeIntentState").ask(this.$speech, this.$reprompt);
         },
         Unhandled() {
-            this.tell("OMG, I will take care");
+
+            this.$reprompt = this.$speech = app.Speech['help'].Help({ Type: 'ConfirmOkNotOk'});
+            this.followUpState('TourIntentState').ask(this.$speech, this.$reprompt);
         }
     }
 };

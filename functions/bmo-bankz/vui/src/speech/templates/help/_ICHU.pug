@@ -1,0 +1,34 @@
+- var enList = ["Hmm", "I can't right now", "Well not today", "I am sorry", "I gotcha"]
+- var frList = ["Hmm", "Je ne peux pas maintenant", "Enfin pas aujourd'hui", "je suis désolé", "je t'ai"]
+if Locale == "fr-ca"
+    s
+        case Emotion.toLowerCase()
+            when 'sad'
+                emphasis(level="moderate") 
+                    prosody(volume="x-soft") #{frList[r]}, 
+            when 'joy'
+                emphasis(level="moderate") 
+                    prosody(volume="x-loud") #{frList[r]}, 
+            default
+                emphasis(level="moderate") 
+                    prosody(volume="soft") #{frList[r]} 
+        break(time="10ms")
+        | Mais je peux vous aider à obtenir votre solde et vos transactions bancaires quotidiennes comme
+        emphasis(level="moderate") 
+            prosody(volume='soft') envoyer ou demander de l'argent à quelqu'un.
+else 
+    s
+        case Emotion.toLowerCase()
+            when 'sad'
+                emphasis(level="moderate") 
+                    prosody(volume="x-soft") #{enList[r]}, 
+            when 'joy'
+                emphasis(level="moderate") 
+                    prosody(volume="x-loud") #{enList[r]}, 
+            default
+                emphasis(level="moderate") 
+                    prosody(volume="soft") #{enList[r]} 
+        break(time="10ms")
+        | But, I can help to get your balance and daily banking transactions like 
+        emphasis(level="moderate") 
+            prosody(volume='loud') send or request money to some one.

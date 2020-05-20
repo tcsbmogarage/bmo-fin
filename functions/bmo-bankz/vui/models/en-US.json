@@ -29,6 +29,14 @@
 					{
 						"name": "AMAZON.StopIntent",
 						"samples": []
+					},
+					{
+						"name": "AMAZON.YesIntent",
+						"samples": []
+					},
+					{
+						"name": "AMAZON.NoIntent",
+						"samples": []
 					}
 				]
 			}

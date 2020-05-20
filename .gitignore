@@ -65,5 +65,7 @@ node_modules/
 .env
 
 #bmo-bankz
-./functions/bmo-bankz/server/server.js
+./functions/bmo-bankz/server/middleware/auth.js
 ./functoins/bmo-bankz/server/datasources.json
+./functions/bmo-bankz/vui/tokens.json
+./functions/bmo-bankz/vui/src/config.js

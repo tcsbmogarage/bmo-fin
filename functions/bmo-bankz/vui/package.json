@@ -10,6 +10,7 @@
     "jovo-platform-alexa": "^3.0.0",
     "jovo-platform-googleassistant": "^3.0.0",
     "jovo-plugin-debugger": "^3.0.0",
+    "jwt-decode": "^2.2.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.5"
   },

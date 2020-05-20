@@ -1,7 +1,7 @@
 const functions = require('firebase-functions');
 const api = require('./bmo-bankz/server/server');
 const { Webhook, GoogleCloudFunction } = require('jovo-framework');
-const { app } = require('./bmo-bankz/bankz-jovo/src/app.js');
+const { app } = require('./bmo-bankz/vui/src/app.js');
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //

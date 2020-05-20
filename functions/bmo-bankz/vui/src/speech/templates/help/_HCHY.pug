@@ -1,0 +1,33 @@
+- var frMsg = "Comment puis-je vous aider?"
+- var enMsg = "How can I help you?"
+
+if Locale == "fr-ca"
+    s
+        case Emotion.toLowerCase()
+            when 'sad'
+                emphasis(level="moderate") 
+                    prosody(volume="x-soft") C'est bon, 
+                break(time="10ms")
+                | #{frMsg}
+            when 'joy'
+                emphasis(level="moderate") 
+                    prosody(volume="x-loud") Je suis heureux d'entendre cela, 
+                break(time="10ms")
+                | #{frMsg}
+            default
+                | #{frMsg}
+else 
+    s
+        case Emotion.toLowerCase()
+            when 'sad'
+                emphasis(level="moderate") 
+                    prosody(volume="x-soft") That's Okay, 
+                break(time="10ms")
+                | #{enMsg}
+            when 'joy'
+                emphasis(level="moderate") 
+                    prosody(volume="x-loud") I am glad to hear that, 
+                break(time="10ms")
+                | #{enMsg}
+            default
+                | #{enMsg}

@@ -1,0 +1,12 @@
+- var notifications = nList
+- var counter = 1
+s
+    | I figure out few best BMO offers , 
+    break(time="20ms")
+    | related to your interest. 
+    break(time="1s")
+    each val in notifications
+        | Number #{counter} in the list
+        break(time="20ms")
+        emphasis(level="moderate") #{val.Message_Summary}
+        - counter = counter + 1

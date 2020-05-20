@@ -1,0 +1,22 @@
+- var notifications = nList
+- var counter = 1
+if ! Reprompt_Message
+    s
+        | I figure out few best BMO offers , 
+        break(time="20ms")
+        | related to your interest. 
+        break(time="1s")
+        each val in notifications
+            break(time="20ms")
+            emphasis(level="moderate") #{val.Message_Summary}
+            break(time="20ms")
+            | #{val.Message_Detail}
+            - counter = counter + 1
+        break(time="1s")
+        prosody(volume="loud") Are you interested 
+        emphasis(level="moderate") to apply this credit-card?
+else 
+    s
+        prosody(volume="loud") Are you interested 
+        emphasis(level="moderate") to apply this credit-card?
+    

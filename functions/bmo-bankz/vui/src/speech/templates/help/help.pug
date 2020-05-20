@@ -1,0 +1,27 @@
+if Locale == "fr-ca"
+    s
+        case Type
+            when 'ConfirmYesNo'
+                | C'est difficile à comprendre, 
+                prosody(volume="loud") pourriez-vous s'il vous plaît répondre
+                emphasis(level="moderate") Oui ou non?
+            when 'ConfirmOkNotOk'
+                | C'est difficile à comprendre, 
+                prosody(volume="loud") pourriez-vous s'il vous plaît répondre
+                emphasis(level="moderate") D'accord ou pas d'accord?
+            default
+                | Comment puis-je vous aider?
+        
+else
+    s
+        case Type
+            when 'ConfirmYesNo'
+                | I didn't get you, 
+                prosody(volume="loud") could you please reply 
+                emphasis(level="moderate") yes or no?
+            when 'ConfirmOkNotOk'
+                | I didn't get you, 
+                prosody(volume="loud") could you please reply 
+                emphasis(level="moderate") Okay or Not Okay?
+            default
+                | How can I help you?

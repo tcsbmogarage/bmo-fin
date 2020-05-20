@@ -8,6 +8,7 @@ const Template = {
      speechFileSuffix: "-ssml.js",
      rootPath: "speech",
      templatePath: "speech/templates",
+     BasePath: "./",
      Cache: {},
      Engine: {},
      Map: {},
@@ -28,12 +29,16 @@ const Template = {
      },
      Load(locale){
         let obj = {};
-        let speechFile = `./${this.rootPath}/${locale}${this.speechFileSuffix}`;
-        let templatePath = `./${this.templatePath}/${locale}/`;
+        this.rootPath = this.BasePath + '/speech';
+        this.templatePath = this.rootPath + '/templates';
+        let speechFile = `${locale}${this.speechFileSuffix}`;
+        let speechFilePath = path.join(this.rootPath, speechFile);
+        let localePath = path.join(this.templatePath, locale);
         try {
-            if (!fs.existsSync(speechFile)) {
-                pug.precompile(templatePath, {
-                    basedir: './speech/templates',
+            if (!fs.existsSync(speechFilePath)) {
+                pug.precompile(localePath, {
+                    basedir: `./speech/templates`,
+                    output: this.rootPath,
                     file: speechFile,
                     pretty: false
                 })
@@ -41,8 +46,8 @@ const Template = {
         } catch(err) {
             console.error(err)
         }
-        obj = require("." + speechFile);
-        this.Map[locale] = path.join(__dirname, `../${this.templatePath}/${locale}/`); 
+        obj = require(speechFilePath);
+        this.Map[locale] = this.templatePath; 
         this.Engine[locale] = obj;
         return obj;
     }

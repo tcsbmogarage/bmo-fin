@@ -1,3 +1,5 @@
 node_modules/
 bmo-bankz/server/datasources.json
 bmo-bankz/server/server.js
+bmo-bankz/vui/tokens.json
+bmo-bankz/vui/src/config.js

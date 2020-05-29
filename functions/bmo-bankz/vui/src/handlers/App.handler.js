@@ -8,6 +8,8 @@ var AppHandler = {
             let token = this.$request.getAccessToken();
             let session = this.$request.session;
 
+            app.DeviceMaker = app._GetDeviceName(this);
+
             console.debug("Launched!");
             this.$_ = {};
             this.$_.Help = "help";

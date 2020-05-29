@@ -3,7 +3,7 @@ if Locale == "fr-ca"
         case Emotion.toLowerCase()
             when 'sad'
                 emphasis(level="moderate") 
-                    prosody(volume="x-soft") C'est bon, 
+                    prosody(volume="soft") C'est bon, 
                 break(time="10ms")
                 | #{Msg}
             when 'joy'
@@ -18,7 +18,7 @@ else
         case Emotion.toLowerCase()
             when 'sad'
                 emphasis(level="moderate") 
-                    prosody(volume="x-soft") That's Okay, 
+                    prosody(volume="soft") That's Okay, 
                 break(time="10ms")
                 | #{Msg}
             when 'joy'

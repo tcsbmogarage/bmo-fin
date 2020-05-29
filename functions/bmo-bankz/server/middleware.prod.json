@@ -32,7 +32,11 @@
     }
   },
   "session": {},
-  "auth": {},
+  "auth": {
+    "./middleware/auth": {
+      "path": "${restApiRoot}"
+    }
+  },
   "parse": {},
   "routes": {
     "loopback#rest": {

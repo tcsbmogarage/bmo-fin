@@ -1,0 +1,38 @@
+- var transactions = list
+- var counter = 1
+if ! Reprompt_Message
+    if transactions.length > 0
+        s
+            | Here you go, 
+            break(time="1s")
+            each trans in transactions
+                - var td = new Date(0);
+                - td.setUTCSeconds(parseInt(trans.Transaction_Time._seconds));
+                - var date = td.toLocaleString('default', { month: '2-digit', day: '2-digit' });
+                - var time = td.toLocaleString('default', { hour12: true, hour: 'numeric', minute: 'numeric' });
+                break(time="60ms")
+                if transactions.length != 1
+                    | . Number #{counter} in the list 
+                break(time="40ms")
+                emphasis(level="moderate") #{trans.Amount} 
+                | #{trans.Transaction_Status == 'Debit' ? "to" : "from" } 
+                break(time="20ms")
+                | #{trans.Source_Account_Name} at 
+                say-as(interpret-as="time") #{time}, 
+                say-as(interpret-as="date" format="md") #{date}
+                - counter = counter + 1
+            break(time="2s")
+            | that's all, 
+            prosody(volume="loud") 
+                emphasis(level="moderate") Anything else?
+    else
+        s
+            | I am sorry, 
+            emphasis(level="moderate") nothing to list 
+            | on #{tDate}
+else 
+    s
+        | that's all, 
+        prosody(volume="loud") 
+            emphasis(level="moderate") Anything else?
+    

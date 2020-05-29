@@ -5,9 +5,7 @@ var GuestHandler = {
     GuestWithRelationship() {
         try {
             let guest = this.$user.$data;
-            var regex = /(ALEXA|GOOGLE)/;
-            let deviceClues = regex.exec(this.$request.getDeviceName());
-            let device = deviceClues[0].toLowerCase();
+            let device = app.DeviceMaker;
             console.debug('DeviceName: %s', device);
             switch(device) {
                 case 'alexa':

@@ -1,4 +1,3 @@
-'use strict'
 
 var NotificationHandler = {
     
@@ -34,9 +33,9 @@ var NotificationHandler = {
                 notes = app.Mock.Notifications;
             }
 
-            this.$speech = app.Speech[user.Locale].Notifications_SummaryIntent(notes);
+            this.$speech = app.Speech[user.Locale].Notifications_summaryIntent(notes);
             notes.Reprompt_Message = true;
-            this.$reprompt = app.Speech[user.Locale].Notifications_SummaryIntent(notes);
+            this.$reprompt = app.Speech[user.Locale].Notifications_summaryIntent(notes);
 
             this.followUpState('CreditCardIntentState').ask(this.$speech, this.$reprompt);
         } catch(e) {

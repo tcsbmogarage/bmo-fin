@@ -1,0 +1,42 @@
+if ! Reprompt_Message
+    - var startDate = new Date(Start_Date).toLocaleString('default', { month: '2-digit', day: '2-digit' })
+    - var endDate = new Date(End_Date).toLocaleString('default', { month: '2-digit', day: '2-digit' })
+
+    if Number_Of_Transactions > 0
+        s
+            | You #{Transaction_Status == "Debit" ? "spent" : "received"} 
+            emphasis(level="moderate") $#{Amount} between 
+            say-as(interpret-as="date" format="md") #{startDate} and 
+            say-as(interpret-as="date" format="md") #{endDate}, 
+            emphasis(level="moderate") out of #{Number_Of_Transactions} 
+            | #{Transaction_Status} 
+            | #{(Number_Of_Transactions == 1)? "transaction" : "transactions"}. 
+            break(time="1s")
+            if Number_Of_Transactions < 6
+                emphasis(level="moderate")
+                    prosody(volume="loud") Can I  
+                    if Number_Of_Transactions == 1
+                        | describe that for you?
+                    else
+                        | list those for you?
+    else
+        s
+            | You 
+            emphasis(level="moderate") did not #{Transaction_Status == "Debit" ? "spent" : "received"}  
+            | anything between 
+            say-as(interpret-as="date" format="md") #{startDate} and 
+            say-as(interpret-as="date" format="md") #{endDate}
+else 
+    if Number_Of_Transactions > 0
+        s
+            if Number_Of_Transactions < 6
+                emphasis(level="moderate")
+                    prosody(volume="loud") Can I 
+                    if Number_Of_Transactions == 1
+                        | describe that for you?
+                    else
+                        | list those for you?
+    else
+        s
+            emphasis(level="moderate")
+                    prosody(volume="loud") Anything else?

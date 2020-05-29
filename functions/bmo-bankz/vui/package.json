@@ -4,6 +4,7 @@
   "description": "BMO Bankz VUI",
   "main": "src/index.js",
   "dependencies": {
+    "amazon-date-parser": "^0.3.0",
     "cache-pug-templates": "^2.0.1",
     "jovo-db-filedb": "^3.0.0",
     "jovo-framework": "^3.0.13",

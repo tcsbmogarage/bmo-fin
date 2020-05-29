@@ -20,7 +20,7 @@ var TourHandler = {
             
             msg = app.Speech[this.user.Locale].StartTourIntent(this.user.Detail);
             this.$speech.addText(msg);
-            this.$reprompt = app.Speech['help']._HCHY();
+            this.$reprompt = app.Speech['help']._HCHY({Emotion: 'Default'});
             this.$user.$data.Detail.Is_Tour_Completed = true;
 
             this.followUpState("UserWelcomeIntentState").ask(this.$speech, this.$reprompt);

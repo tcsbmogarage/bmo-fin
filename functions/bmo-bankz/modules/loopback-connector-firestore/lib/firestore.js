@@ -36,10 +36,13 @@ class Firestore {
 		var response = [];
 		var query1 = this.db.collection(model);
 
+		if(filter.where && filter.where.direct) {
+			return callback(null, query1);
+		}
 		this.buildQuery(filter, query1, query => {
-			console.debug('*********');
-			console.debug(filter);
-			console.debug(query);
+			//console.debug('*********');
+			//console.debug(filter);
+			//console.debug(query);
 			if(filter.order) {
 				var options = filter.order.split(' ')
 				query = (options.length == 2)? query.orderBy(options[0], options[1]) : query.orderBy(filter.order);
@@ -48,7 +51,7 @@ class Firestore {
 				if(!(filter.where && filter.where.id))
 					query = query.limit(filter.limit);
 			}
-			console.debug(query); //debug
+			//console.debug(query); //debug
 			query.get().then(snapshot => {
 				if (snapshot.exists) {
 					let completeItem = snapshot.data();
@@ -306,12 +309,40 @@ class Firestore {
 		callback(query.where(properties[0], operator, operand));
 	}
 
+	async appendWhereQuery(filter, query, callback) {
+		console.log(filter);
+		var properties = Object.keys(filter);
+		var operator = '==';
+		var operand;
+		await properties.forEach( (attribute, index, arr) => {
+			console.log(attribute);
+			console.log(typeof(filter[attribute]));
+			console.log(filter[attribute]);
+			if (typeof(filter[attribute]) === 'object') {
+				var restOperator = Object.keys(filter[attribute]);
+				operator = this.decodeOperator(restOperator);
+				console.log('00000000000000000');
+				console.log(operator);
+				operand = filter[attribute][restOperator];
+			} else {
+				operand = filter[attribute];
+			}
+			//console.log(query);
+			query = query.where(attribute, operator, operand)
+		});
+		callback(query);
+	}
+
 	decodeOperator(restOperator) {
 		var operator = '==';
 		if (restOperator == 'lt') {
 			operator = '<';
 		} else if (restOperator == 'gt')  {
 			operator = '>';
+		} else if (restOperator == 'gte')  {
+			operator = '>=';
+		} else if (restOperator == 'lte')  {
+			operator = '<=';
 		}
 		return operator;
 	}

@@ -21,16 +21,19 @@ module.exports = function(Notification) {
                         });
                         cb(null, list);
                     } else {
+
+                        console.error(err);
                         cb(null, err);
                     }
                 });
             } catch(e) {
+                
                 console.error(e);
             }
         }   
 
     Notification.remoteMethod('summary',{
-        accepts: {arg: 'Account_Number', type: 'string'},
+        accepts: {arg: 'Account_Number', type: 'string', required: true},
         returns: {type: 'array', root: true},
         http: {path: '/summary', verb: 'get'}
     });

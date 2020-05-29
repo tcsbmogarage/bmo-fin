@@ -1,0 +1,42 @@
+if Type.toLowerCase() == "error"
+    s
+        case Scenario
+            when 'ConfirmYesNo'
+                | C'est difficile à comprendre, 
+                prosody(volume="loud") pourriez-vous s'il vous plaît répondre
+                emphasis(level="moderate") Oui ou non?
+            when 'ConfirmOkNotOk'
+                | C'est difficile à comprendre, 
+                prosody(volume="loud") pourriez-vous s'il vous plaît répondre
+                emphasis(level="moderate") D'accord ou pas d'accord?
+            default
+                | Comment puis-je vous aider?
+        
+else if Type.toLowerCase() == "validation"
+    s
+        case Scenario
+            when 'MissingDate' 
+                prosody(volume="loud") I'm sorry, 
+                emphasis(level="moderate") I'm confused with your input.
+                | try again in other words.
+            when 'MissingStartDate' 
+                prosody(volume="loud") Okay, tell me one
+                emphasis(level="moderate") start date
+            when 'MissingEndDate' 
+                prosody(volume="loud") finally, tell me one
+                emphasis(level="moderate") end date
+            when 'MissingStartAndEndDates'
+                prosody(volume="loud") Can you please repeat the dates?  
+                emphasis(level="moderate") like from X-date to Y-date
+            when 'InvalidDatePeriod'
+                prosody(volume="loud") I'm sorry, I can help to get, 
+                emphasis(level="moderate") only last one year transactions. 
+                prosody(rate="slow")
+                    say-as(interpret-as="date" format="md") #{new Date(Input).toLocaleString('default', { month: '2-digit', day: '2-digit' })} 
+                | doesn't falls in that time line.
+            default
+                | I could not figure-out this time, 
+                emphasis(level="moderate") try again in other words.
+else
+    | I could not figure-out this time, 
+    emphasis(level="moderate") try again in other words.

@@ -1,0 +1,18 @@
+- var bList = list
+- console.log(Reprompt_Message);
+if ! Reprompt_Message
+    if bList.length > 0
+        s
+            emphasis(level="moderate")
+                prosody(volume="loud") Your current account balance is   
+                break(time="20ms")
+                prosody(volume="loud") 
+                    prosody(rate="slow")  #{bList[0].Amount}
+    else
+        s
+            | I am sorry,
+            emphasis(level="moderate") Can you please link your account again?
+else 
+    s
+        emphasis(level="moderate")
+                prosody(volume="loud") Anything else?

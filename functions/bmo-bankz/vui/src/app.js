@@ -117,6 +117,7 @@ app._GetStartEndDate = function(ctx) {
 
  app.setHandler(
     require('./handlers/App.handler'),
+    require('./handlers/UserDetail.handler'),
     require('./handlers/Guest.handler'),
     require('./handlers/Welcome.handler'),
     require('./handlers/Tour.handler'),

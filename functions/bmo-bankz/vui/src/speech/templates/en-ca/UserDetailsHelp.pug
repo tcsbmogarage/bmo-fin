@@ -1,0 +1,56 @@
+if Type.toLowerCase() == "endcard"
+    s
+        case Scenario
+            when 'SuccessCCPayment' 
+                prosody(volume="loud") Thank you!   
+                emphasis(level="moderate") You have been credited 
+                prosody(rate="slow") #{Credit_Card_Pay_Amount} 
+                | to your credit card ending with 
+                prosody(rate="slow") 
+                    say-as(interpret-as="characters") #{LastFourDCode}
+                break(time="3s")
+                | , Anything else?
+            when 'NoOutstanding'
+                prosody(volume="loud") No!   
+                emphasis(level="moderate") You don't have 
+                prosody(rate="slow") any outstanding 
+                | to your credit card ending with 
+                prosody(rate="slow") 
+                    say-as(interpret-as="characters") #{LastFourDCode}
+                break(time="3s")
+                | , Anything else?
+            default
+                | How can I help you?
+        
+else if Type.toLowerCase() == "validation"
+    s
+        case Scenario
+            when 'Invalid4DCode' 
+                prosody(volume="loud") I'm sorry, 
+                emphasis(level="moderate") Given four digit,
+                | didn't match with your credit card number. 
+                break(time="45ms")
+                prosody(rate="slow") Your transaction has been declined. 
+                break(time="30ms")
+                prosody(rate="slow") Please try again!
+            when 'MissingStartDate' 
+                prosody(volume="loud") Okay, tell me one
+                emphasis(level="moderate") start date
+            when 'MissingEndDate' 
+                prosody(volume="loud") finally, tell me one
+                emphasis(level="moderate") end date
+            when 'MissingStartAndEndDates'
+                prosody(volume="loud") Can you please repeat the dates?  
+                emphasis(level="moderate") like from X-date to Y-date
+            when 'InvalidDatePeriod'
+                prosody(volume="loud") I'm sorry, I can help to get, 
+                emphasis(level="moderate") only last one year transactions. 
+                prosody(rate="slow")
+                    say-as(interpret-as="date" format="md") #{new Date(Input).toLocaleString('default', { month: '2-digit', day: '2-digit' })} 
+                | doesn't falls in that time line.
+            default
+                | I could not figure-out this time, 
+                emphasis(level="moderate") try again in other words.
+else
+    | I could not figure-out this time, 
+    emphasis(level="moderate") try again in other words.

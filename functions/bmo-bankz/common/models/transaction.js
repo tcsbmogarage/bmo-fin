@@ -1,7 +1,12 @@
-'use strict';
+var request = require('request');
 
 module.exports = function(Transaction) {
 
+    var app = require('../../server/server');
+
+    //Private variables
+
+    var _url = '';
 
     //Private functions
 
@@ -118,7 +123,40 @@ module.exports = function(Transaction) {
 
                 console.error(e);
             }
+    }
+
+    //Create a transaction
+
+    Transaction.createATransaction = function(userAccNumber, sourceAccName, sourceAccNumber, amount, transStatus, comment, cb){
+
+        try {
+            var input = {
+                "User_Account_Number": userAccNumber,
+                "Source_Account_Name": sourceAccName,
+                "Source_Account_Number": sourceAccNumber,
+                "Amount": amount,
+                "Transaction_Status": transStatus,
+                "Comment": comment
+            };
+            input.Transaction_Time = new Date();
+            console.debug(input);
+            var transRec = Transaction.create(input, function(err, cobj){
+
+                if(!err) {
+                    console.debug("Transaction Saved!");
+                    cb(err, input);
+                } else {
+
+                    console.error(err);
+                    cb(err, cobj);
+                }
+            });
+        } catch(err) {
+
+            console.error(err);
+            cb(err, err);
         }
+    }
 
     //Remoted Methods
 
@@ -171,6 +209,30 @@ module.exports = function(Transaction) {
                  ],
         returns: {type: 'array', root: true},
         http: {path: '/enqSumCreditBtwDates', verb: 'get'}
+    });
+
+    //Create a Transaction
+
+    Transaction.observe('after save', function(ctx, next){
+
+        const amount = ctx.instance.Amount;
+        const accountNumber = ctx.instance.User_Account_Number;
+        const type = ctx.instance.Transaction_Status;
+        var AccountBalance = app.models.AccountBalance;
+        AccountBalance.updateAccountBalance(accountNumber, amount, type, next);
+    });
+
+    Transaction.remoteMethod('createATransaction',{
+        accepts: [
+                  {arg: 'User_Account_Number', type: 'string', required: true},
+                  {arg: 'Source_Account_Name', type: 'string', required: true},
+                  {arg: 'Source_Account_Number', type: 'string', required: true},
+                  {arg: 'Amount', type: 'string', required: true},
+                  {arg: 'Transaction_Status', type: 'string', required: true},
+                  {arg: 'Comment', type: 'string', required: false}
+                 ],
+        returns: {type: 'object', root: true},
+        http: {path: '/createATransaction', verb: 'post'}
     });
 
 };

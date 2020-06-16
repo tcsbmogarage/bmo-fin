@@ -75,7 +75,7 @@ var TransactionHandler = {
             case "OnDate":
                             if(startDate.length == 0) {
 
-                                ctx.$speech = ctx.$reprompt = app.Speech[user.Locale].Transactions_Help({Type: 'Validation', Scenario: 'MissingDate'});
+                                ctx.$speech = ctx.$reprompt = app.Speech[user.Locale].TransactionsHelp({Type: 'Validation', Scenario: 'MissingDate'});
                                 this.ask(ctx.$speech, ctx.$reprompt);
                             } else if(startDate.length > 0) {
 
@@ -85,7 +85,7 @@ var TransactionHandler = {
                                     result = true;
                                 } else {
                     
-                                    ctx.$speech = ctx.$reprompt = app.Speech[user.Locale].Transactions_Help({Type: 'Validation', Scenario: 'InvalidDatePeriod', Input: startDate});
+                                    ctx.$speech = ctx.$reprompt = app.Speech[user.Locale].TransactionsHelp({Type: 'Validation', Scenario: 'InvalidDatePeriod', Input: startDate});
                                     this.ask(ctx.$speech, ctx.$reprompt);
                                 }
                             }
@@ -103,7 +103,7 @@ var TransactionHandler = {
 
                             if(input.startDate.length == 0 || input.endDate.length == 0) {
 
-                                ctx.$speech = ctx.$reprompt = app.Speech[user.Locale].Transactions_Help({Type: 'Validation', Scenario: 'MissingDate'});
+                                ctx.$speech = ctx.$reprompt = app.Speech[user.Locale].TransactionsHelp({Type: 'Validation', Scenario: 'MissingDate'});
                                 this.ask(ctx.$speech, ctx.$reprompt);
                             } else {
 
@@ -112,7 +112,7 @@ var TransactionHandler = {
                                     result = true;
                                 } else {
                     
-                                    ctx.$speech = ctx.$reprompt = app.Speech[user.Locale].Transactions_Help({Type: 'Validation', Scenario: 'InvalidDatePeriod', Input: input.endDate});
+                                    ctx.$speech = ctx.$reprompt = app.Speech[user.Locale].TransactionsHelp({Type: 'Validation', Scenario: 'InvalidDatePeriod', Input: input.endDate});
                                     this.ask(ctx.$speech, ctx.$reprompt);
                                 }
                             }
@@ -247,9 +247,9 @@ var TransactionHandler = {
             if(this.isSlotFilled(this, arguments.callee.name)) {
                 await this.Query(arguments.callee.name, 'Debit', false, (trans) => {
 
-                    this.$speech = app.Speech[this.user.Locale].Transactions_QueryOnDate(trans.Details);
+                    this.$speech = app.Speech[this.user.Locale].TransactionsQueryOnDate(trans.Details);
                     trans.Details.Reprompt_Message = true;
-                    this.$reprompt = app.Speech[this.user.Locale].Transactions_QueryOnDate(trans.Details);
+                    this.$reprompt = app.Speech[this.user.Locale].TransactionsQueryOnDate(trans.Details);
                     
                     this.followUpState(trans.routingIntentState).ask(this.$speech, this.$reprompt);
                 });
@@ -266,9 +266,9 @@ var TransactionHandler = {
             if(this.isSlotFilled(this, arguments.callee.name)) {
                 await this.Query(arguments.callee.name, 'Credit', false, (trans) => {
                 
-                    this.$speech = app.Speech[this.user.Locale].Transactions_QueryOnDate(trans.Details);
+                    this.$speech = app.Speech[this.user.Locale].TransactionsQueryOnDate(trans.Details);
                     trans.Details.Reprompt_Message = true;
-                    this.$reprompt = app.Speech[this.user.Locale].Transactions_QueryOnDate(trans.Details);
+                    this.$reprompt = app.Speech[this.user.Locale].TransactionsQueryOnDate(trans.Details);
                     
                     this.followUpState(trans.routingIntentState).ask(this.$speech, this.$reprompt);
                 });
@@ -292,9 +292,9 @@ var TransactionHandler = {
                 
                 await this.Query(fnName, 'Debit', true, (trans) => {
             
-                    this.$speech = app.Speech[this.user.Locale].Transactions_QueryBtwDate(trans.Details);
+                    this.$speech = app.Speech[this.user.Locale].TransactionsQueryBtwDate(trans.Details);
                     trans.Details.Reprompt_Message = true;
-                    this.$reprompt = app.Speech[this.user.Locale].Transactions_QueryBtwDate(trans.Details);
+                    this.$reprompt = app.Speech[this.user.Locale].TransactionsQueryBtwDate(trans.Details);
                     
                     this.followUpState(trans.routingIntentState).ask(this.$speech, this.$reprompt);
                 });
@@ -310,9 +310,9 @@ var TransactionHandler = {
 
             await this.Query(arguments.callee.name, 'Credit', true, (trans) => {
                 
-                this.$speech = app.Speech[this.user.Locale].Transactions_QueryBtwDate(trans.Details);
+                this.$speech = app.Speech[this.user.Locale].TransactionsQueryBtwDate(trans.Details);
                 trans.Details.Reprompt_Message = true;
-                this.$reprompt = app.Speech[this.user.Locale].Transactions_QueryBtwDate(trans.Details);
+                this.$reprompt = app.Speech[this.user.Locale].TransactionsQueryBtwDate(trans.Details);
 
                 this.followUpState(trans.routingIntentState).ask(this.$speech, this.$reprompt);
         });

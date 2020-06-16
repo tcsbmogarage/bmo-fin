@@ -26,7 +26,7 @@
       "type": "string"
     },
     "Transaction_Time": {
-      "type": "string"
+      "type": "date"
     },
     "Comment": {
       "type": "string"

@@ -18,7 +18,7 @@ gulp.task('lbcon_firestore', function(){
 });
 
 //Middleware Dev
-gulp.task('middleware-dev', function(){
+gulp.task('middleware.dev', function(){
     
     return gulp
             .src('./bmo-bankz/server/middleware.dev.json')
@@ -27,7 +27,7 @@ gulp.task('middleware-dev', function(){
 });
 
 //Middleware Prod
-gulp.task('middleware-prod', function(){
+gulp.task('middleware.prod', function(){
     
     return gulp
             .src('./bmo-bankz/server/middleware.prod.json')

@@ -1,0 +1,37 @@
+- var bList = list
+- var entry = 'all'
+if ! Reprompt_Message
+    if bList.length > 0
+        case ccInfoIntent.toLowerCase()
+            when 'when'
+                - entry = 'only-date'
+                - break
+            default
+                - entry = 'all'
+
+        s
+            if entry == 'all'
+                emphasis(level="moderate")
+                    prosody(volume="loud") Your credit card outstanding balance is   
+                break(time="20ms")
+                prosody(volume="loud") 
+                    prosody(rate="slow")  #{bList[0].Credit_Card_Due_Amount} 
+            if entry == 'all'
+                break(time="1s")
+                | and 
+            if entry == 'all' || entry == 'only-date'
+                | the due date is 
+                break(time="20ms")
+                prosody(rate="slow")
+                    say-as(interpret-as="date" format="mdy") #{new Date(bList[0].Credit_Card_Due_Date).toLocaleString('default', { month: '2-digit', day: '2-digit', year: 'numeric'})} 
+            break(time="2s")
+            | You can pay your bill by simply saying 
+            emphasis(level="moderate") "Clear my credit card outstanding".
+    else
+        s
+            | I am sorry,
+            emphasis(level="moderate") I couldn't find any credit-card tagged to your account
+else 
+    s
+        emphasis(level="moderate")
+                prosody(volume="loud") Anything else?

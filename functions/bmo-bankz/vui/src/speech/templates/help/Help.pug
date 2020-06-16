@@ -9,6 +9,10 @@ if Locale == "fr-ca"
                 | C'est difficile à comprendre, 
                 prosody(volume="loud") pourriez-vous s'il vous plaît répondre
                 emphasis(level="moderate") D'accord ou pas d'accord?
+            when 'ConfirmFourDigit'
+                | Ce n'est pas valide, 
+                prosody(volume="loud") 
+                    emphasis(level="moderate") numéro à quatre chiffres.
             default
                 | Comment puis-je vous aider?
         
@@ -19,9 +23,16 @@ else
                 | I didn't get you, 
                 prosody(volume="loud") could you please reply 
                 emphasis(level="moderate") yes or no?
+                - break
             when 'ConfirmOkNotOk'
                 | I didn't get you, 
                 prosody(volume="loud") could you please reply 
                 emphasis(level="moderate") Okay or Not Okay?
+                - break
+            when 'ConfirmFourDigit'
+                | It's not a valid, 
+                prosody(volume="loud") 
+                    emphasis(level="moderate") four digit number.
+                - break
             default
-                | How can I help you?
+                | How can I help you omg?

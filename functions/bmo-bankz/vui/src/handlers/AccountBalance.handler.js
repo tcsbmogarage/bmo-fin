@@ -1,5 +1,5 @@
 
-var TransactionHandler = {
+var AccountBalanceHandler = {
     
     user: '',
     getUserDetails: function() {
@@ -64,4 +64,4 @@ var TransactionHandler = {
     }
 };
 
-module.exports = TransactionHandler;
+module.exports = AccountBalanceHandler;

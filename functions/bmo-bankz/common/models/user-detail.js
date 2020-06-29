@@ -35,7 +35,7 @@ module.exports = function(Userdetail) {
                 //Transaction
 
                 var Transaction = app.models.Transaction;
-                const sourceAccountName = "Pay your credit card outstanding"
+                const sourceAccountName = "pay your credit card outstanding"
                 Transaction.createATransaction(userAccountNumber, sourceAccountName, cardNumber, payAmount, "Debit", "", function() {
 
                     Userdetail.find(condition, function(err, userDetail){
@@ -63,20 +63,6 @@ module.exports = function(Userdetail) {
             }
         }
 
-    Userdetail.remoteMethod('payCCBill',{
-        accepts: [
-                  {arg: 'User_Detail_Id', type: 'string', required: true},
-                  {arg: 'User_Account_Number', type: 'string', required: true},
-                  {arg: 'Credit_Card_Due_Amount', type: 'string', required: true},
-                  {arg: 'Credit_Card_Pay_Amount', type: 'string', required: true},
-                  {arg: 'Credit_Card_Due_Date', type: 'string', required: true},
-                  {arg: 'Credit_Card_Number', type: 'string', required: true},
-                  {arg: 'Credit_Card_Type', type: 'string', required: true},
-                  {arg: 'Default', type: 'string', default: 'false'}
-                 ],
-        returns: {type: 'object', root: true},
-        http: {path: '/clearCcBill', verb: 'post'}
-    });
 
     Userdetail.remoteMethod('payCCBill',{
         accepts: [

@@ -3,12 +3,28 @@ s
 
     | You can say like,
 
-    | Send $200 to MOM
+    break(time="1s")
 
-    | Send $200 to MOM for monthly maintenance
+    | I want to 
+    prosody(rate="slow")  send $200 to MOM for house bills
 
-    | Or
+    break(time="30ms")
+
+    | In other words,
+
+    break(time="30ms")
 
     | I want to send some money to MOM
 
-    | At the end of this conversation $200 will be sent to your MOM and purpose of transfer also tracked. As per this example, MOM is a short name for a safe-zone payee account.
+    break(time="1s")
+
+    | At the end of this conversation 
+    prosody(rate="slow") $200 
+    | will be sent to your MOM 
+    | and purpose of transaction also tracked for future reference. 
+    
+    break(time="1s")
+
+    emphasis(level="moderate") As per this example, 
+    prosody(rate="slow") MOM 
+    | is a short name for a safe-zone payee account.

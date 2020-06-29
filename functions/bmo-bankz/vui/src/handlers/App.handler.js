@@ -94,8 +94,8 @@ var AppHandler = {
     },
     ON_ERROR() {
 
-        let msg = "Good bye! something went wrong!";
-        this.tell(msg);
+        let msg = "I'm sorry! something went wrong! Please try again!";
+        this.ask(msg);
     },
     END() {
 

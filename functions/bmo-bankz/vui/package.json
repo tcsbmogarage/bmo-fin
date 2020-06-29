@@ -13,7 +13,8 @@
     "jovo-plugin-debugger": "^3.0.0",
     "jwt-decode": "^2.2.0",
     "request": "^2.88.2",
-    "request-promise": "^4.2.5"
+    "request-promise": "^4.2.5",
+    "twilio": "^3.46.0"
   },
   "devDependencies": {
     "gulp": "^4.0.0",

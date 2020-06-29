@@ -10,7 +10,7 @@
     "Id": {
       "type": "string"
     },
-    "User_Id": {
+    "User_Account_Number": {
       "type": "string"
     },
     "Payee_Short_Name": {

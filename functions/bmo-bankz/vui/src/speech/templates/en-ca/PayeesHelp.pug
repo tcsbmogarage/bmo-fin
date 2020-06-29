@@ -1,18 +1,18 @@
 if Type.toLowerCase() == "endcard"
     s
         case Scenario
-            when 'SuccessPayment' 
-                emphasis(level="moderate") You have successfully transfered 
-                prosody(rate="slow") #{Amount} 
-                | to your 
-                prosody(rate="slow") 
-                    | #{SZPayee}
+            when 'Success' 
+                emphasis(level="moderate")
+                prosody(volume="loud") Your payee account 
+                break(time="20ms")
+                prosody(rate="slow") #{Payee_Short_Name} , successfully #{Is_A_Safe_Zone_Payee_Given}ed 
+                prosody(volume="loud") as a safe-zone payee. 
                 break(time="3s")
                 | , Anything else?
-            when 'InsufficientBalance'
+            when 'InvalidPayee'
                 prosody(volume="loud") Your transaction has been declined!   
-                emphasis(level="moderate") Insufficient 
-                prosody(rate="slow") balance in your account 
+                emphasis(level="moderate") Invalid payee name #{Payee_Short_Name}, 
+                prosody(rate="slow") in your account 
                 | ending with 
                 prosody(rate="slow") 
                     say-as(interpret-as="characters") #{AccountNumber}

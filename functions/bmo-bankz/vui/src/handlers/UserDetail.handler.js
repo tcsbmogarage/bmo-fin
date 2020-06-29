@@ -62,7 +62,7 @@ var UserDetailHandler = {
             let userDetailId = user.Oauth.User_Metadata.User_Detail_Id;
             let trans = {};
 
-            if(!app.IsAlive) {
+            if(app.IsAlive) {
 
                 let apiPath = app._GetIntentApiPath("UserDetails_payCcBill");
                 const data = JSON.stringify(input);
@@ -87,7 +87,7 @@ var UserDetailHandler = {
                 );
             } else {
 
-                trans = app.Mock.clearCcBill;
+                trans = app.Mock.UserDetails_payCcBill;
             }
             return callback(null, trans);
         } catch(e) {

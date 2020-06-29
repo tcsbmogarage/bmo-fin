@@ -8,23 +8,23 @@ if ! Is_Tour_Completed
             prosody(volume="loud") 
                 prosody(rate="medium") #{Login.Institution_Name} 
             break(time="1s") 
-            | I am your personal banker,
-            | always here to help your day to day banking activities 
+            | I'm your personal banker, 
+            | to help your day to day banking activities. 
             break(time="1s") 
-            prosody(volume="loud") I recommend a 
-            emphasis(level="moderate") quick tour 
+            prosody(volume="loud")  I recommend, 
+            emphasis(level="moderate") a quick tour 
             | to explore this voice banking service.
             break(time="2s")
             prosody(volume="loud") Say 
             break(time="20ms")
             emphasis(level="strong") 'Okay' 
-            | to continue.
+            | to start the tour.
     else 
         s
             prosody(volume="loud") Say 
             break(time="20ms")
             emphasis(level="strong") 'Okay' 
-            | to continue.
+            | to start the tour.
 else
     s
         +slow

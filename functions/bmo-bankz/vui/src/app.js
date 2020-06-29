@@ -19,11 +19,12 @@ global.app = new App();
 var Template = require('./app/Template');
 app.Auth0 = require('./app/Auth0');
 app.BmoBankz = require('./app/BmoBankz');
+app.Twilio = require('./app/Twilio');
 //App Zone End
 
 app.Version = 'v1';
 
-app.IsAlive = false;
+app.IsAlive = true;
 
 if(!app.IsAlive)
     app.Mock = require('../db/mock');
@@ -50,16 +51,15 @@ app.Locales.forEach(locale => {
 // APP Global Private Functions
 // ------------------------------------------------------------------
 
-/* console.debug = function() {
+console.debug = function() {
 
-}; */
+};
 
 app._GetIntentApiPath = function(name) {
 
     var intentPath = name.replace('_', '/');
     intentPath = intentPath.replace("Intent", "");
     var apiPath = `/api/${app.Version}/${intentPath}`;
-
     return apiPath;
 };
 
@@ -122,8 +122,10 @@ app._GetStartEndDate = function(ctx) {
     require('./handlers/Welcome.handler'),
     require('./handlers/Tour.handler'),
     require('./handlers/AccountBalance.handler'),
+    require('./handlers/Payee.handler'),
     require('./handlers/Notification.handler'),
     require('./handlers/Transaction.handler'),
-    require('./handlers/CreditCard.handler')
+    require('./handlers/CreditCard.handler'),
+    require('./handlers/Faq.handler')
     );
 module.exports.app = app;

@@ -39,6 +39,8 @@
                     "name": "Notifications_SummaryIntent",
                     "slots": [],
                     "samples": [
+                        "what is the summary",
+                        "what is my summary",
                         "What's my summary",
                         "quick summary",
                         "quick summary please",
@@ -50,9 +52,11 @@
                     ]
                 },
                 {
-                    "name": "TransactionsEnquiryAccountBalance",
+                    "name": "AccountBalances_getAccountBalanceIntent",
                     "slots": [],
                     "samples": [
+                        "what is account balance",
+                        "what is balance",
                         "please tell my account balance",
                         "account balance please",
                         "tell my account balance",
@@ -64,14 +68,1060 @@
                 },
                 {
                     "name": "AMAZON.YesIntent",
-                    "samples": []
+                    "samples": [
+                        "Okay"
+                    ]
                 },
                 {
                     "name": "AMAZON.NoIntent",
-                    "samples": []
+                    "samples": [
+                        "no no",
+                        "nah",
+                        "skip",
+                        "not interested",
+                        "I am not interested",
+                        "Never",
+                        "Not ok",
+                        "Not Okay"
+                    ]
+                },
+                {
+                    "name": "Transactions_enqSumDebitOnDateIntent",
+                    "slots": [
+                        {
+                            "name": "StartDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "well {StartDate}",
+                                "{StartDate}",
+                                "its for {StartDate}",
+                                "its {StartDate}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "How much I spent on",
+                        "How many transactions I did on {StartDate}",
+                        "How many transactions I did {StartDate}",
+                        "How much I spent {StartDate}",
+                        "How much I spent on {StartDate}"
+                    ]
+                },
+                {
+                    "name": "Transactions_enqSumCreditOnDateIntent",
+                    "slots": [
+                        {
+                            "name": "StartDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "well {StartDate}",
+                                "{StartDate}",
+                                "its for {StartDate}",
+                                "its {StartDate}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "how much money i received on",
+                        "How much money I received on {StartDate}",
+                        "How much money I received {StartDate}",
+                        "How much money received {StartDate}",
+                        "How much money received on {StartDate}",
+                        "How much credited {StartDate}",
+                        "How much credited on {StartDate}",
+                        "How much money credited {StartDate}",
+                        "How much money credited on {StartDate}",
+                        "How many people sent money {StartDate}",
+                        "How much money I got {StartDate}",
+                        "How much money I got on {StartDate}",
+                        "How many people sent money on {StartDate}"
+                    ]
+                },
+                {
+                    "name": "Transactions_enqSumDebitBtwDatesIntent",
+                    "slots": [
+                        {
+                            "name": "StartDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "{StartDate} and {EndDate}",
+                                "{StartDate}",
+                                "its {StartDate}",
+                                "it's {StartDate}",
+                                "just only for {StartDate}",
+                                "just for {StartDate}",
+                                "From {StartDate} to {EndDate}",
+                                "Start from {StartDate} end to {EndDate}",
+                                "only for {StartDate}",
+                                "I am looking between {StartDate} and {EndDate}",
+                                "I am looking for {StartDate}"
+                            ]
+                        },
+                        {
+                            "name": "EndDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "same date",
+                                "no end date",
+                                "{StartDate} and {EndDate}",
+                                "{EndDate}",
+                                "same {EndDate}",
+                                "its {EndDate}",
+                                "it's {EndDate}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "How much I spent",
+                        "I want to double check my expenditures",
+                        "I want to verify my expenditures",
+                        "I want to know about my expenditures",
+                        "I want to know expenditures",
+                        "I want to know expenditure",
+                        "How much I spent between",
+                        "How much money I spent from {StartDate} and {EndDate}",
+                        "How much money I spent between {StartDate} and {EndDate}",
+                        "How much I spent from {StartDate} to {EndDate}",
+                        "I want to know my expenditure",
+                        "I want to know my expenditures",
+                        "How much I spent between {StartDate} and {EndDate}"
+                    ]
+                },
+                {
+                    "name": "Transactions_enqSumCreditBtwDatesIntent",
+                    "slots": [
+                        {
+                            "name": "StartDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "{StartDate} and {EndDate}",
+                                "{StartDate}",
+                                "its {StartDate} ",
+                                "It's {StartDate}",
+                                "Just only for {StartDate}",
+                                "Just for {StartDate}",
+                                "From {StartDate} to {EndDate}",
+                                "Start from {StartDate} end to {EndDate}",
+                                "only for {StartDate}",
+                                "I am looking between {StartDate} and {EndDate}",
+                                "I am looking for {StartDate}"
+                            ]
+                        },
+                        {
+                            "name": "EndDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "same date",
+                                "no end date",
+                                "{StartDate} and {EndDate}",
+                                "{EndDate}",
+                                "same {EndDate}",
+                                "its {EndDate}",
+                                "it's {EndDate}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "I want to know credits",
+                        "I want to know my credits",
+                        "I want to verify my credits",
+                        "I want to know about my credits",
+                        "How much I received between",
+                        "How much I received",
+                        "How much I received from {StartDate} to {EndDate}",
+                        "How much I received between {StartDate} and {EndDate}"
+                    ]
+                },
+                {
+                    "name": "Transactions_getLastNTransactionsIntent",
+                    "slots": [],
+                    "samples": [
+                        "tell last five transactions",
+                        "pull last five transactions",
+                        "get last five transactions",
+                        "what are all my last five transactions",
+                        "tell my last five transactions",
+                        "Pull my last five transactions",
+                        "Get my last five transactions"
+                    ]
+                },
+                {
+                    "name": "UserDetails_getCCDetails",
+                    "slots": [
+                        {
+                            "name": "CCInfo",
+                            "type": "CCInfo"
+                        },
+                        {
+                            "name": "CCInfoIntent",
+                            "type": "CCInfoIntent"
+                        }
+                    ],
+                    "samples": [
+                        "{CCInfoIntent} is my due",
+                        "{CCInfoIntent} is my credit card {CCInfo}",
+                        "{CCInfoIntent} is my credeit card due",
+                        "{CCInfoIntent} is my {CCInfo}",
+                        "{CCInfoIntent} much due",
+                        "{CCInfoIntent} due for credit card",
+                        "{CCInfoIntent} due for my credit card",
+                        "{CCInfoIntent} is the due for my credit card"
+                    ]
+                },
+                {
+                    "name": "UserDetails_payCcBill",
+                    "slots": [
+                        {
+                            "name": "DueAmount",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Pay {DueAmount} dollars to my outstanding",
+                        "Pay {DueAmount} dollars to my credit card",
+                        "Pay {DueAmount} dollars to my credit card outstanding",
+                        "Clear my credit card outstanding"
+                    ]
+                },
+                {
+                    "name": "UserFourDigitCode",
+                    "slots": [
+                        {
+                            "name": "FourDigit",
+                            "type": "AMAZON.FOUR_DIGIT_NUMBER",
+                            "samples": [
+                                "sure its {FourDigit}",
+                                "Sure {FourDigit}",
+                                "{FourDigit}",
+                                "Okay its {FourDigit}",
+                                "It's {FourDigit}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "{FourDigit}",
+                        "the last four digit is {FourDigit}",
+                        "the code is {FourDigit}",
+                        "well its {FourDigit}",
+                        "it's {FourDigit}",
+                        "its {FourDigit}"
+                    ]
+                },
+                {
+                    "name": "Transactions_sendMoney",
+                    "slots": [
+                        {
+                            "name": "Amount",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "{Amount}",
+                                "{Amount} bucks",
+                                "{Amount} dollars"
+                            ]
+                        },
+                        {
+                            "name": "SafeZonePayee",
+                            "type": "SafeZonePayees",
+                            "samples": [
+                                "its {SafeZonePayee}",
+                                "to {SafeZonePayee}",
+                                "to my {SafeZonePayee}"
+                            ]
+                        },
+                        {
+                            "name": "Comments",
+                            "type": "UserComments"
+                        }
+                    ],
+                    "samples": [
+                        "I want to send money to {SafeZonePayee}",
+                        "I want to transfer money to {SafeZonePayee}",
+                        "transfer {Amount} dollars to {SafeZonePayee}",
+                        "send {Amount} dollars to {SafeZonePayee}",
+                        "send {Amount} dollars to {SafeZonePayee} for {Comments}",
+                        "I have to send money to {SafeZonePayee}",
+                        "I have to transfer money",
+                        "I have to send money",
+                        "I want to send money to my {SafeZonePayee}",
+                        "I have to send money to my {SafeZonePayee}"
+                    ]
+                },
+                {
+                    "name": "Payees_updateSafeZone",
+                    "slots": [
+                        {
+                            "name": "IsASafeZonePayee",
+                            "type": "SafeZonePayeeAction",
+                            "samples": [
+                                "{IsASafeZonePayee}",
+                                "I want to {IsASafeZonePayee}"
+                            ]
+                        },
+                        {
+                            "name": "ShortName",
+                            "type": "SafeZonePayees",
+                            "samples": [
+                                "its {ShortName}",
+                                "for {ShortName}",
+                                "to {ShortName}",
+                                "to my {ShortName}",
+                                "for my {ShortName}",
+                                "its my {ShortName}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "{IsASafeZonePayee} my {ShortName} as safe zone payee",
+                        "{IsASafeZonePayee} {ShortName} as safe zone payee"
+                    ]
                 }
             ],
-            "types": []
-        }
+            "types": [
+                {
+                    "name": "CCInfo",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "outstandings"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "outstanding"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "due date"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "due"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "CCInfoIntent",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "How much"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "How"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "When"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "What"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "UserComments",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Anything"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "SafeZonePayees",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Business"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Sarah"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Frank"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Tom"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bro",
+                                "synonyms": [
+                                    "brother"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "sis",
+                                "synonyms": [
+                                    "sister"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "uncle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "mom",
+                                "synonyms": [
+                                    "amma",
+                                    "mum",
+                                    "papa",
+                                    "mother"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "aunt",
+                                "synonyms": [
+                                    "aunt"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "grandmother",
+                                "synonyms": [
+                                    "grany"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "dad",
+                                "synonyms": [
+                                    "appa",
+                                    "papa",
+                                    "daddy",
+                                    "father"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "SafeZonePayeeAction",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "unmark"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "mark"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "Transactions_enqSumDebitBtwDatesIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.1440174635301"
+                    },
+                    "slots": [
+                        {
+                            "name": "StartDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1440174635301.1050289065401"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isInDuration",
+                                    "prompt": "Slot.Validation.1367446997660.1540341868425.586969914494",
+                                    "start": "-P366D",
+                                    "end": "P0D"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "EndDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1470588991589.988423247698"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isInDuration",
+                                    "prompt": "Slot.Validation.916959868199.481477190266.645934503787",
+                                    "start": "-P366D",
+                                    "end": "P0D"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Transactions_enqSumDebitOnDateIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "StartDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.287746211725.325851792323"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Transactions_enqSumCreditBtwDatesIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.1585490624590"
+                    },
+                    "slots": [
+                        {
+                            "name": "StartDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1585490624590.519374186003"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isInDuration",
+                                    "prompt": "Slot.Validation.1418046550231.97663368781.5757574103",
+                                    "start": "-P366D",
+                                    "end": "P0D"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "EndDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1585490624590.328214867937"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isInDuration",
+                                    "prompt": "Slot.Validation.1418046550231.1113912426412.1188716103927",
+                                    "start": "-P366D",
+                                    "end": "P0D"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Transactions_enqSumCreditOnDateIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "StartDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1061406107404.618608884016"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "UserDetails_getCCDetails",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "CCInfo",
+                            "type": "CCInfo",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "CCInfoIntent",
+                            "type": "CCInfoIntent",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "UserDetails_payCcBill",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "DueAmount",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "UserFourDigitCode",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "FourDigit",
+                            "type": "AMAZON.FOUR_DIGIT_NUMBER",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.1168441258423.1293820229486",
+                                "elicitation": "Elicit.Slot.1218455257627.1330156313575"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isLessThanOrEqualTo",
+                                    "prompt": "Slot.Validation.1168441258423.1293820229486.1079344849728",
+                                    "value": "9999"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Transactions_sendMoney",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.1428769446725"
+                    },
+                    "slots": [
+                        {
+                            "name": "Amount",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1487849722444.1142910944419"
+                            }
+                        },
+                        {
+                            "name": "SafeZonePayee",
+                            "type": "SafeZonePayees",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1487849722444.619535852491"
+                            }
+                        },
+                        {
+                            "name": "Comments",
+                            "type": "UserComments",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "Payees_updateSafeZone",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.982631234691"
+                    },
+                    "slots": [
+                        {
+                            "name": "IsASafeZonePayee",
+                            "type": "SafeZonePayeeAction",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.982631234691.804325462174"
+                            }
+                        },
+                        {
+                            "name": "ShortName",
+                            "type": "SafeZonePayees",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.982631234691.376882246808"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.507406344418.366493280030",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which date, are you looking for?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.507406344418",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I heard, You are looking for your expenditure on {StartDate} . Can I proceed?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "You want to know your expenditure on {StartDate} , Is that correct?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1440174635301.1050289065401",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Okay, tell me a start date"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Okay, which one is start date?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1440174635301.1387166242863",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "do you want to know expenditures about a bunch of days?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1440174635301",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "do you want to know only for {StartDate} ?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "do you want to know between {StartDate} and {EndDate} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1470588991589.988423247698",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Okay, which one is end date?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Okay, tell me a end date"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.287746211725.325851792323",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which date, are you looking for?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1585490624590.519374186003",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Okay, which one is start date"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Okay, tell me a start date"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1585490624590.328214867937",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Okay, which one is end date?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Okay, tell me a end date"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1585490624590",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I heard, dates from {StartDate} to {EndDate} , Is that correct?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "do you want to know only for {StartDate} ?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "do you want to know between {StartDate} and {EndDate} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1367446997660.1540341868425.586969914494",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I am sorry, I can help you to get only last one year transactions. {StartDate} is not fit with that time span. tell the date again."
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1061406107404.618608884016",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which date, are you looking for?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.916959868199.481477190266.645934503787",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I am sorry, I can help you to get only last one year transactions. {StartDate} is not fit with that time span."
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1418046550231.97663368781.5757574103",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I am sorry, I can help you to get only last one year transactions. {StartDate} is not fit with that time span. tell the date again."
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1418046550231.1113912426412.1188716103927",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I am sorry, I can help you to get only last one year transactions. {StartDate} is not fit with that time span."
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1166481061005",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I heard to pay {DueAmount} to your credit card ends with {CCLastFourDigit} , is that correct?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Should I pay {DueAmount} to your credit card ends with {CCLastFourDigit} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1218455257627.1330156313575",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Can you please spell it for me?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Okay, tell me a valid four digit code"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.1218455257627.1330156313575",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "You said {FourDigit} , can I authorize?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "I heared its {FourDigit} , is that correct?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1001516765679",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "You said {FourDigit} , can I authorize?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "I heared its {FourDigit} , is that correct?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.1168441258423.1293820229486",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "You said {FourDigit} , can I authorize?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "I heard, its {FourDigit} . Is that correct?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1168441258423.1293820229486.1079344849728",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Recheck your code, its exceeding four digit"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1487849722444.1142910944419",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "How much?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "How much do you want to send?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "How much money do you want to send?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1487849722444.619535852491",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "who is the payee?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "To whom do you want to send?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "To whom?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1487849722444",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "{Amount} dollars to {SafeZonePayee} , Are you sure?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "You want to transfer {Amount} dollars to {SafeZonePayee} , Can you please confirm?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": " You want to transfer {Amount} dollars to {SafeZonePayee}  for  {Comments} , Can you please confirm?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1428769446725",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "do you want to send {Amount} dollars to your {SafeZonePayee} ?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "You want to send {Amount} dollars to your {SafeZonePayee} , is that correct?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.982631234691",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "{IsASafeZonePayee} {ShortName} , is that correct?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "do you want to {IsASafeZonePayee} {ShortName}  as safe-zone payee?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.982631234691.804325462174",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Do you want to Mark or Unmark?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.982631234691.376882246808",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "To whom?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Who is the payee?"
+                    }
+                ]
+            }
+        ]
     }
 }

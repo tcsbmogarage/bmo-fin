@@ -12,11 +12,12 @@ var TransactionHandler = {
         this.details = { Amount: 0 };
         let counter = 1;
         await list.forEach(element => {
-            this.details.Amount += parseFloat(element.Amount.replace('$', ''))
+            this.details.Amount += parseFloat(element.Amount.replace('$', ''));
             this.details.Number_Of_Transactions = counter++;
             this.details.Transaction_Status = element.Transaction_Status;
         });
-        
+        this.details.Amount = parseFloat(this.details.Amount).toFixed(2);
+
         return this.details;
     },
     getInputByDS(ctx, param) {
@@ -40,6 +41,34 @@ var TransactionHandler = {
                                
                                 if(ctx.$inputs[param].key.length > 0)
                                     result = ctx.$inputs[param].key.split('T')[0];
+                        break;
+                    default:
+                }
+            } catch(e) {
+
+                console.error(e);
+            }
+            console.debug(ctx.$inputs);
+            console.debug("param: " + param + " Value:" + result);
+            return result;
+    },
+    getInput(ctx, param) {
+
+            let result = '';
+            if(typeof app.DeviceMaker === "undefined")
+                app.DeviceMaker = app._GetDeviceName(ctx);
+            
+            try {
+                switch(app.DeviceMaker) {
+                    //Amazon
+                    case "alexa":
+                            if(ctx.$inputs[param])
+                                result = ctx.$inputs[param].value;
+                        break;
+                    //Google
+                    case "google":
+                            if(ctx.$inputs[param])
+                                result = ctx.$inputs[param].key;
                         break;
                     default:
                 }
@@ -359,6 +388,136 @@ var TransactionHandler = {
         } catch(e) {
 
             console.error(e);
+        }
+    },
+    async sendMoney(ctx, input, callback) {
+
+        try {
+
+            let user = ctx.getUserDetails();
+            let userDetailId = user.Oauth.User_Metadata.User_Detail_Id;
+            let trans = {};
+
+            if(app.IsAlive) {
+
+                let apiPath = await app._GetIntentApiPath("Transactions_sendMoney");
+                const data = JSON.stringify(input);
+                var options = {
+                    port: 443,
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Content-Length': data.length
+                    },
+                    json: data,
+                    m2m: false
+                };
+
+                //BMO-Bankz user account balance
+                var pSendMoney = app.BmoBankz.connect('POST', apiPath, options);
+                trans.list = await pSendMoney.then(function(result){ return result; },
+                    function(err){ 
+                        console.error(err);
+                    }
+                );
+            } else {
+
+                trans = app.Mock.sendMoney;
+            }
+            return callback(null, trans);
+        } catch(e) {
+
+            console.error(e);
+            return callback(e, null);
+        }
+    },
+    async Transactions_sendMoney() {
+        try {
+            
+            let user = this.getUserDetails();
+            var details = {};
+            details.Amount = this.getInput(this, "Amount");
+            details.SZPayee = this.getInput(this, "SafeZonePayee");
+            details.Comments = this.getInput(this, "Comments");
+            console.debug(details);
+            
+            this.$speech = app.Speech[user.Locale].Transactions_sendMoney(details);
+
+            details.Reprompt_Message = true;
+            this.$reprompt = app.Speech[user.Locale].Transactions_sendMoney(details);
+
+            //Generate 4 digit OTP
+            details.OTP = Math.floor(1000 + Math.random() * 9000);
+            details.AccountNumber = user.Detail.Login.Account_Number.substr(user.Detail.Login.Account_Number.length - 4);
+            details.MobileNumber = user.Oauth.User_Metadata.Mobile_Number;
+            this.setSessionAttributes(details);
+
+            app.Twilio.sendTransOTP(details.MobileNumber, details, function() { 
+
+            });
+            this.followUpState('SendMoneyState').ask(this.$speech, this.$reprompt);
+
+        } catch(e) {
+
+            console.error(e);
+        }
+    },
+    SendMoneyState: {
+
+        async UserFourDigitCode() {
+
+            let user = this.getUserDetails();
+            let input = this.getSessionAttributes();
+            this.$user.$data.LastFourDCode = this.$inputs.FourDigit.value;
+            var cfdCode = this.$user.$data.LastFourDCode;
+            //Api specific names
+            input.User_Account_Number = user.Detail.Login.Account_Number;
+            input.Source_Account_Short_Name = input.SZPayee;
+            input.Amount = '$' + input.Amount; 
+            input.Comment = input.Comments;
+            console.debug(input);
+            const actualCode = input.OTP;
+            var dType = {};
+
+            console.debug("GivenFourDigit: [%s]", this.$user.$data.LastFourDCode);
+            console.debug("Actual OTP: [%s]", actualCode);
+            if(actualCode == cfdCode) {
+
+                dType.LastFourDCode = actualCode;
+                await this.sendMoney(this, input, (err, details) => {
+                    if(!err) {
+
+                        console.debug(details);
+                        dType = { Type: 'EndCard', Scenario: details.list.Status };
+                        frameDetails = Object.assign({}, input, dType);
+                    } else {
+
+                        console.error(err);
+                        dType = { Type: 'EndCard', Scenario: 'InternalServerError' };
+                        frameDetails = Object.assign({}, input, dType);
+                    }
+                    this.$reprompt = this.$speech = app.Speech[user.Locale].TransactionsHelp(frameDetails);
+                    this.followUpState("UserWelcomeIntentState").ask(this.$speech, this.$reprompt);
+                });
+                
+            } else {
+
+                this.$reprompt = this.$speech = app.Speech[user.Locale].TransactionsHelp({Type: 'Validation', Scenario: 'Invalid4DCode'});
+                this.followUpState("SendMoneyState").ask(this.$speech, this.$reprompt);
+            }
+        },
+        YesIntent() {
+
+            console.debug('Yes Intent from SendMoneyState');
+        },
+        NoIntent() { 
+
+            this.$reprompt = this.$speech = app.Speech['help']._ATE({ Emotion: 'Sad'});
+            this.followUpState("UserWelcomeIntentState").ask(this.$speech, this.$reprompt);
+        },
+        Unhandled() {
+
+            this.$reprompt = this.$speech = app.Speech['help'].Help({ Type: 'ConfirmFourDigit'});
+            this.followUpState("SendMoneyState").ask(this.$speech, this.$reprompt);        
         }
     },
     TransactionIntentState: {

@@ -158,6 +158,64 @@ module.exports = function(Transaction) {
         }
     }
 
+    //Send Money
+
+    Transaction.sendMoney = function(userAccNumber, sourceAccShortName, amount, comment, cb){
+
+        try {
+            var input = {
+                "User_Account_Number": userAccNumber,
+                "Source_Account_Name": sourceAccShortName,
+                "Amount": amount,
+                "Transaction_Status": 'Debit',
+                "Comment": comment
+            };
+            input.Transaction_Time = new Date();
+            console.debug(input);
+
+            var Payee = app.models.Payee;
+            Payee.getPayeeDetailsByShortName(userAccNumber, sourceAccShortName, (err, payeeDetails) => {
+                if(!err) {
+                    console.debug(payeeDetails);
+                    if(payeeDetails.length > 0) {
+                        if(String(payeeDetails[0].Is_A_Safe_Zone_Payee) == "true") {
+                            input.Source_Account_Number = payeeDetails[0].Payee_Account_Number;
+                            console.debug(input);
+                            var transRec = Transaction.create(input, function(err, cobj){
+
+                                    if(!err) {
+
+                                        console.debug("Transaction Saved!");
+                                        input = Object.assign({}, input, {"Status": "SuccessPayment"});
+                                        cb(err, input);
+                                    } else {
+
+                                        console.error(err);
+                                        cb(err, cobj);
+                                    }
+                                });
+                        } else {
+
+                            cb(null, {"Status": "IsNotASafeZonePayee"});
+                        }
+                    } else {
+
+                        cb(null, {"Status": "InvalidShortName"});
+                    }
+                } else {
+
+                    console.error(err);
+                    cb(err, err);
+                }
+            });
+
+            } catch(err) {
+
+                console.error(err);
+                cb(err, err);
+            }
+    }
+
     //Remoted Methods
 
     Transaction.remoteMethod('getLastNTransactions',{
@@ -233,6 +291,17 @@ module.exports = function(Transaction) {
                  ],
         returns: {type: 'object', root: true},
         http: {path: '/createATransaction', verb: 'post'}
+    });
+
+    Transaction.remoteMethod('sendMoney',{
+        accepts: [
+                  {arg: 'User_Account_Number', type: 'string', required: true},
+                  {arg: 'Source_Account_Short_Name', type: 'string', required: true},
+                  {arg: 'Amount', type: 'string', required: true},
+                  {arg: 'Comment', type: 'string', required: false}
+                 ],
+        returns: {type: 'object', root: true},
+        http: {path: '/sendMoney', verb: 'post'}
     });
 
 };

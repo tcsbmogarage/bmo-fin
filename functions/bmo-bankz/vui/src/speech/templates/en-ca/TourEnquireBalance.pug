@@ -3,10 +3,20 @@ s
 
     | You can say like,
 
-    | What's my balance?
+    break(time="1s")
 
-    | Or
+    prosody(rate="slow") What's my balance? 
 
-    | Balance please
+    break(time="30ms")
 
-    | As a result of this, you can get your current balance from your linked bank account.
+    | Otherwise 
+
+    break(time="30ms")
+
+    prosody(rate="slow") my balance please
+
+    break(time="1s")
+
+    emphasis(level="moderate") As a result of this, 
+    | you can get your 
+    | current balance from your linked bank account.

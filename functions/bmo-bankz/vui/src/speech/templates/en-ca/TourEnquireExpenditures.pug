@@ -3,12 +3,28 @@ s
 
     | You can say like,
 
-    | Get my last 5 transactions?
+    break(time="1s")
 
-    | How much I spent for this month?
+    | Get my last 
+    prosody(rate="slow") 5 transactions?
 
-    | How much I spent between Apr 20 to Apr 25?
+    break(time="30ms")
 
-    | How much I spent yesterday?
+    | How much I spent 
+    prosody(rate="slow") for this month?
 
-    | You can ask any time span as per your necessity.
+    break(time="30ms")
+
+    | How much I spent 
+    prosody(rate="slow") between Apr 20 to Apr 25?
+
+    break(time="30ms")
+
+    | How much I spent 
+    prosody(rate="slow") yesterday?
+
+    break(time="1s")
+
+    emphasis(level="moderate") You can ask any period of time, 
+
+    prosody(rate="slow") you name it, I have it! 

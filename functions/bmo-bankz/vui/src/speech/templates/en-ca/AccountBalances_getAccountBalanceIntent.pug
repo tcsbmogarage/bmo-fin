@@ -6,7 +6,7 @@ if ! Reprompt_Message
                 prosody(volume="loud") Your current account balance is   
                 break(time="20ms")
                 prosody(volume="loud") 
-                    prosody(rate="slow")  #{bList[0].Amount}
+                    prosody(rate="slow")  $#{parseFloat(bList[0].Amount.replace('$', '')).toFixed(2)}
     else
         s
             | I am sorry,

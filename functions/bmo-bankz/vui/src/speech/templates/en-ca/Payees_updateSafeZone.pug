@@ -1,0 +1,15 @@
+if ! Reprompt_Message
+    s
+        emphasis(level="moderate")
+            prosody(volume="loud") You initiated to #{Is_A_Safe_Zone_Payee_Given} the payee, 
+        break(time="20ms")
+        prosody(volume="loud") 
+            prosody(rate="slow")  #{Payee_Short_Name} 
+        emphasis(level="moderate") as a Safe-Zone payee. 
+        break(time="20ms")
+        emphasis(level="moderate") To authorise this transaction, 
+        prosody(rate="slow") spell the received OTP, from your registered mobile number.
+else 
+    s
+        emphasis(level="moderate")
+                prosody(volume="loud") Anything else?

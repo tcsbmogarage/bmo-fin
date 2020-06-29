@@ -1,0 +1,65 @@
+if Type.toLowerCase() == "what"
+    s
+        case Context.toLowerCase()
+            when 'safe zone' 
+                emphasis(level="moderate") It's a trust circle. To bring a person, 
+                prosody(rate="slow") who is physically known by you 
+                | and a frequent transaction between you and that person 
+                break(time="30ms")
+                prosody(rate="slow") 
+                    | for example., your family members, friends and more 
+                break(time="3s")
+                | , Anything else?
+            when 'insufficient balance'
+                prosody(volume="loud") Your account doesn't have sufficed balance  
+                emphasis(level="moderate") to continue that transaction
+                prosody(rate="slow") balance in your account 
+                break(time="3s")
+                | , Anything else?
+            when 'invalid short name' 
+                prosody(volume="loud") Your payee short name
+                emphasis(level="moderate") doesn't exist in your payee list.
+                break(time="3s")
+                | , Anything else?
+            when 'safe zone payee' 
+                prosody(volume="loud") Which means, you didn't declare 
+                emphasis(level="moderate") your payee in trust circle of safe-zone. 
+                break(time="3s")
+                | , Anything else?
+            default
+                prosody(volume="loud") I don't have an answer right now, 
+                emphasis(level="moderate") Apparently, I enquire about this and update my skill soon, 
+                break(time="3s")
+                | , Anything else?
+        
+else if Type.toLowerCase() == "how"
+    s
+        case Context
+            when 'safe zone payee' 
+                prosody(volume="loud") To mark one of your payee as safe-zone payee
+                emphasis(level="moderate") Say 
+                break(time="45ms")
+                prosody(rate="slow") I want to mark 
+                break(time="30ms")
+                prosody(rate="slow") Please try again!
+            when 'missing start date' 
+                prosody(volume="loud") Okay, tell me one
+                emphasis(level="moderate") start date
+            when 'missing end date' 
+                prosody(volume="loud") finally, tell me one
+                emphasis(level="moderate") end date
+            when 'missing start and end dates'
+                prosody(volume="loud") Can you please repeat the dates?  
+                emphasis(level="moderate") like from X-date to Y-date
+            when 'invalid date period'
+                prosody(volume="loud") I'm sorry, I can help to get, 
+                emphasis(level="moderate") only last one year transactions. 
+                prosody(rate="slow")
+                    say-as(interpret-as="date" format="md") #{new Date(Input).toLocaleString('default', { month: '2-digit', day: '2-digit' })} 
+                | doesn't falls in that time line.
+            default
+                | I could not figure-out this time, 
+                emphasis(level="moderate") try again in other words.
+else
+    | I could not figure-out this time, 
+    emphasis(level="moderate") try again in other words.
